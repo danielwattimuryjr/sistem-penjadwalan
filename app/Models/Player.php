@@ -11,4 +11,14 @@ class Player extends Model
         'position',
         'jersey_number'
     ];
+
+    public function availabilities()
+    {
+        return $this->hasMany(PlayerAvailability::class);
+    }
+
+    public function scheduledSessions()
+    {
+        return $this->belongsToMany(ScheduledSession::class);
+    }
 }

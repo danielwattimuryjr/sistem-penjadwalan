@@ -13,7 +13,7 @@
     <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="https://demos.creative-tim.com/soft-ui-dashboard/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- CSS Files -->
     <link id="pagestyle" href="/soft-ui/css/soft-ui-dashboard.css" rel="stylesheet" />
 
@@ -43,9 +43,31 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/soft-ui/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
 
-    @isset ($scripts)
-    {{ $scripts }}
-    @endisset
+  <!-- Sweetalert2 JavaScript-->
+  <script src="/vendor/sweetalert/sweetalert2.js"></script>
+  @if (session('success'))
+  <script>
+      Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: @json(session('success')),
+          });
+  </script>
+  @endif
+
+  @if (session('error'))
+  <script>
+      Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: @json(session('error')),
+          });
+  </script>
+  @endif
+
+  @isset ($scripts)
+  {{ $scripts }}
+  @endisset
   
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

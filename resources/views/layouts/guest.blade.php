@@ -1,30 +1,180 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
+    <meta name="author" content="Theodore Wira Adi">
+    <meta name="description" content="">
+    <meta name="keywords" content="Satria Muda Pertamina,">
+    <meta name="news_keywords" content="Satria Muda Pertamina," />
+    <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.satriamuda.id/" />
+    <meta property="og:image" content="https://www.satriamuda.id/upload/slider/1750605025-web Header SM.jpg" />
+    <meta property="og:site_name" content="Satria Muda Pertamina (Official Website)" />
+    <meta property="og:title" content="Beranda - Satria Muda Pertamina (Official Website)" />
+    <meta property='og:description' content="" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="https://www.satriamuda.id/" />
+    <meta name="twitter:site" content="https://www.satriamuda.id/" />
+    <meta name="twitter:creator" content="Satria Muda Pertamina (Official Website)" />
+    <meta name="twitter:image" content="https://www.satriamuda.id/upload/slider/1750605025-web Header SM.jpg" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:title" content="Beranda - Satria Muda Pertamina (Official Website)" />
+    <meta name="twitter:url" content="https://www.satriamuda.id/" />
+
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/lightgallery.css">
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/alertify.min.css" />
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/default.min.css" />
+    <link rel="stylesheet" type="text/css" href="/satria-muda/css/jquery.bxslider.css" />
+    <script type="text/javascript" src="/satria-muda/js/jquery.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/jquery-ui.min.js"></script>
+</head>
+
+<body class="bg-darkblue">
+    <x-guest.banner />
+    <x-guest.navbar />
+
+    <div id="banner-slider-1" class="banner-slider">
+
+        <div class="slider-items">
+
+            <div class="slider-item style-apri"
+                style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(upload/slider/1750605025-web Header SM.jpg) no-repeat center; background-size: cover;">
+
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
         </div>
-    </body>
+
+        <div class="banner-slider-roster" style="display: none;">
+
+            <div class="banner-slider-roster-item"></div>
+
+        </div>
+
+    </div>
+
+    {{ $slot }}
+
+    <x-guest.footer />
+    
+    <script type="text/javascript" src="/satria-muda/js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/satria-muda/js/validation.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/picturefill.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/lightgallery-all.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/jquery.mousewheel.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/lg-video.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/lg-thumbnail.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/membership.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/lg-fullscreen.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/lg-hash.min.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/alertify.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/contactandnewsletter.js"></script>
+    <script type="text/javascript" src="/satria-muda/js/jquery.bxslider.js"></script>
+
+    <script type="text/javascript">
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.header-menu').addClass("sticky");
+            } else {
+                $('.header-menu').removeClass("sticky");
+            }
+        });
+        $(".center").slick({
+            autoplay: true,
+            useTransform: true,
+            dots: false,
+            infinite: true,
+            centerMode: true,
+            slidesToShow: 5,
+            focusOnSelect: true,
+            slidesToScroll: 3,
+            responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+        $('#lightgallery').lightGallery({
+            thumbnail: true
+        });
+        $('#lightgallery-video').lightGallery({
+            loadYoutubeThumbnail: true,
+            youtubeThumbSize: 0,
+            videoMaxWidth: '80%',
+        });
+
+        $(".ads-footer").slick({
+            arrows: false,
+            autoplaySpeed: 5000,
+            autoplay: true,
+            dots: false,
+            infinite: true,
+            centerMode: true,
+            variableWidth: true
+        });
+
+        $(".ads-footer-mobile").slick({
+            arrows: false,
+            autoplaySpeed: 5000,
+            autoplay: true,
+            dots: false,
+            infinite: true,
+            centerMode: true,
+            variableWidth: true
+        });
+
+        $(".iklan-pertamina").slick({
+            arrows: false,
+            autoplaySpeed: 5000,
+            autoplay: true,
+            dots: false,
+            infinite: true,
+            variableWidth: true,
+
+        });
+
+
+        $('#modalIklan').css('display', 'flex');
+        $('#modalIklan').modal('show');
+
+        $('.bxslider').bxSlider({
+            auto: true,
+            pager: false,
+            controls: true,
+            touchEnabled: false,
+            pause: 5000
+        });
+    </script>
+    <script src="/satria-muda/js/app.bundle.min.js"></script>
+</body>
+
 </html>

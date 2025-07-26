@@ -10,4 +10,9 @@ class Court extends Model
         'name',
         'location'
     ];
+
+    public function availabilities()
+    {
+        return $this->hasMany(CourtAvailability::class);
+    }
 }

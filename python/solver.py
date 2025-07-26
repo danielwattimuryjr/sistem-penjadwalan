@@ -74,6 +74,7 @@ class LinearProgramming:
     result = []
     for slot in self.data["time_slots"]:
       slot_id = slot["id"]
+      assigned_type = None
       if self.train_vars[slot_id].varValue == 1:
         result.append({"slot": slot_id, "type": "latihan"})
       elif self.spar_vars[slot_id].varValue == 1:
@@ -81,6 +82,31 @@ class LinearProgramming:
       elif self.game_vars[slot_id].varValue == 1:
         result.append({"slot": slot_id, "type": "pertandingan"})
 
+    if assigned_type:
+      # Cari pemain yang tersedia di slot ini
+      assigned_players = []
+      for player in self.data["players"]:
+        for avail in player.get("availability", []):
+          if (
+            avail["day"] == slot["day"]
+            and avail["start"] <= slot["start"]
+            and avail["end"] >= slot["end"]
+          ):
+            assigned_players.append({
+                "id": player["id"],
+                "name": player["name"]
+            })
+            break  # cukup sekali cocok
+          
+      result.append({
+        "slot": slot_id,
+        "day": slot["day"],
+        "start": slot["start"],
+        "end": slot["end"],
+        "type": assigned_type,
+        "players": assigned_players
+      })
+      
     return {
       "status": "success",
       "schedule": result

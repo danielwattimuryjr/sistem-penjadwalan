@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CourtSeeder::class,
             TimeSlotSeeder::class,
             CourtAvailabilitySeeder::class,
+            PlayerAvailabilitySeeder::class,
         ]);
     }
 }
