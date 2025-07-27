@@ -9,7 +9,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <a href="{{route('players.create')}}" class="btn btn-primary">
+              <a href="{{route('admin.players.create')}}" class="btn btn-primary">
                 Tambah Pemain
               </a>
             </div>
@@ -28,27 +28,27 @@
 
                   <tbody>
                     @foreach ($players as $player)
-                      <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $player->name }}</td>
-                        <td class="text-center">{{ $player->jersey_number }}</td>
-                        <td class="text-center">{{ $player->position }}</td>
-                        <td>
-                          <a href="{{ route('players.edit', $player) }}" class="btn btn-warning btn-sm">
-                            Edit
-                          </a>
-                          <form action="{{ route('players.destroy', $player) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
-                              Hapus
-                            </button>
-                          </form>
-                          <a href="{{ route('players.show', $player) }}" class="btn btn-secondary btn-sm">
-                            Detail
-                          </a>
-                        </td>
-                      </tr>
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $player->name }}</td>
+                      <td class="text-center">{{ $player->jersey_number }}</td>
+                      <td class="text-center">{{ $player->position }}</td>
+                      <td>
+                        <a href="{{ route('admin.players.edit', $player) }}" class="btn btn-warning btn-sm">
+                          Edit
+                        </a>
+                        <form action="{{ route('admin.players.destroy', $player) }}" method="POST" class="d-inline">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger btn-sm">
+                            Hapus
+                          </button>
+                        </form>
+                        <a href="{{ route('admin.players.show', $player) }}" class="btn btn-secondary btn-sm">
+                          Detail
+                        </a>
+                      </td>
+                    </tr>
                     @endforeach
                   </tbody>
 

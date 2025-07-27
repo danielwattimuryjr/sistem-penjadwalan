@@ -7,28 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <meta name="author" content="Theodore Wira Adi">
-    <meta name="description" content="">
-    <meta name="keywords" content="Satria Muda Pertamina,">
-    <meta name="news_keywords" content="Satria Muda Pertamina," />
-    <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.satriamuda.id/" />
-    <meta property="og:image" content="https://www.satriamuda.id/upload/slider/1750605025-web Header SM.jpg" />
-    <meta property="og:site_name" content="Satria Muda Pertamina (Official Website)" />
-    <meta property="og:title" content="Beranda - Satria Muda Pertamina (Official Website)" />
-    <meta property='og:description' content="" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:domain" content="https://www.satriamuda.id/" />
-    <meta name="twitter:site" content="https://www.satriamuda.id/" />
-    <meta name="twitter:creator" content="Satria Muda Pertamina (Official Website)" />
-    <meta name="twitter:image" content="https://www.satriamuda.id/upload/slider/1750605025-web Header SM.jpg" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:title" content="Beranda - Satria Muda Pertamina (Official Website)" />
-    <meta name="twitter:url" content="https://www.satriamuda.id/" />
-
     <link rel="stylesheet" type="text/css" href="/satria-muda/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/satria-muda/css/jquery-ui.min.css">
     <link rel="stylesheet" type="text/css" href="/satria-muda/css/font-awesome.min.css">
@@ -49,29 +27,10 @@
     <x-guest.banner />
     <x-guest.navbar />
 
-    <div id="banner-slider-1" class="banner-slider">
-
-        <div class="slider-items">
-
-            <div class="slider-item style-apri"
-                style="background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(upload/slider/1750605025-web Header SM.jpg) no-repeat center; background-size: cover;">
-
-            </div>
-
-        </div>
-
-        <div class="banner-slider-roster" style="display: none;">
-
-            <div class="banner-slider-roster-item"></div>
-
-        </div>
-
-    </div>
-
     {{ $slot }}
 
     <x-guest.footer />
-    
+
     <script type="text/javascript" src="/satria-muda/js/slick.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="/satria-muda/js/validation.min.js"></script>
     <script type="text/javascript" src="/satria-muda/js/picturefill.min.js"></script>
