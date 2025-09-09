@@ -1,8 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CourtAvailabilityController;
+use App\Http\Controllers\CourtController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\PlayerAvailabilityController;
+use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\ScheduleController;
 
 Route::controller(GuestController::class)->group(function () {
     Route::get('/', 'openWelcomePage')->name('guest.welcome');
@@ -12,39 +16,35 @@ Route::controller(GuestController::class)->group(function () {
 
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'verified', 'role:admin'])
+    ->middleware(['auth'])
     ->group(function () {
-        Route::resource('players', \App\Http\Controllers\PlayerController::class);
-        Route::prefix('players/{player}/availabilities')
-            ->name('players.availabilities.')
-            ->controller(\App\Http\Controllers\PlayerAvailabilityController::class)
-            ->group(function () {
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::delete('/{availability}', 'destroy')->name('destroy');
-            });
+        // berlaku untuk admin & manager
+        Route::resource('players', PlayerController::class)->only(['index', 'show']);
 
-        Route::resource('courts', \App\Http\Controllers\CourtController::class);
-        Route::prefix('courts/{court}/availabilities')
-            ->name('courts.availabilities.')
-            ->controller(\App\Http\Controllers\CourtAvailabilityController::class)
-            ->group(function () {
-                Route::get('/create', 'create')->name('create');
-                Route::post('/', 'store')->name('store');
-                Route::delete('/{availability}', 'destroy')->name('destroy');
-            });
+        Route::resource('courts', CourtController::class)->only(['index', 'show']);
 
         Route::prefix('schedules')
             ->name('schedules.')
-            ->controller(\App\Http\Controllers\ScheduleController::class)
+            ->controller(ScheduleController::class)
             ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('generate', 'generate')->name('generate');
+                Route::get('{schedule}/edit', 'edit')->name('edit');
+                Route::put('{schedule}', 'update')->name('update');
+                Route::delete('{schedule}', 'destroy')->name('destroy');
             });
 
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('dashboard', fn() => view('dashboard'))->name('dashboard');
+
+        Route::middleware('role:admin')->group(function () {
+            Route::resource('players', PlayerController::class)->except(['index', 'show']);
+            Route::resource('players.availabilities', PlayerAvailabilityController::class)
+                ->only(['store', 'create', 'destroy']);
+            Route::resource('courts', CourtController::class)->except(['index', 'show']);
+            Route::resource('courts.availabilities', CourtAvailabilityController::class)
+                ->only(['store', 'create', 'destroy']);
+        });
     });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

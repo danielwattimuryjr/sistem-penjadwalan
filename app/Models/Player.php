@@ -17,8 +17,9 @@ class Player extends Model
         return $this->hasMany(PlayerAvailability::class);
     }
 
-    public function scheduledSessions()
+    public function schedules()
     {
-        return $this->belongsToMany(ScheduledSession::class);
+        return $this->belongsToMany(Schedule::class, 'schedule_player')
+                    ->withTimestamps();
     }
 }

@@ -1,6 +1,9 @@
 <x-app-layout title="Lapangan">
     <x-slot name="styles">
-        <link rel="stylesheet" href="/vendor/data-table/dataTables.bootstrap5.min.css">
+        <link
+            rel="stylesheet"
+            href="/vendor/data-table/dataTables.bootstrap5.min.css"
+        />
     </x-slot>
 
     <div class="row">
@@ -9,9 +12,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <a href="{{route('admin.courts.create')}}" class="btn btn-primary">
-                                Tambah Lapangan
-                            </a>
+                            @if (Auth::user()->hasRole('admin'))
+                                <a
+                                    href="{{ route('admin.courts.create') }}"
+                                    class="btn btn-primary"
+                                >
+                                    Tambah Lapangan
+                                </a>
+                            @endif
                         </div>
                         <div class="col">
                             <div class="table-responsive">
@@ -27,29 +35,44 @@
 
                                     <tbody>
                                         @foreach ($courts as $court)
-                                        <tr>
-                                            <td class="text-start">{{ $loop->iteration }}</td>
-                                            <td>{{ $court->name }}</td>
-                                            <td>{{ $court->location }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.courts.edit', $court) }}"
-                                                    class="btn btn-warning btn-sm">
-                                                    Edit
-                                                </a>
-                                                <form action="{{ route('admin.courts.destroy', $court) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        Hapus
-                                                    </button>
-                                                </form>
-                                                <a href="{{ route('admin.courts.show', $court) }}"
-                                                    class="btn btn-secondary btn-sm">
-                                                    Detail
-                                                </a>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td class="text-start">
+                                                    {{ $loop->iteration }}
+                                                </td>
+                                                <td>{{ $court->name }}</td>
+                                                <td>{{ $court->location }}</td>
+                                                <td>
+                                                    @if (Auth::user()->hasRole('admin'))
+                                                        <a
+                                                            href="{{ route('admin.courts.edit', $court) }}"
+                                                            class="btn btn-warning btn-sm"
+                                                        >
+                                                            Edit
+                                                        </a>
+                                                        <form
+                                                            action="{{ route('admin.courts.destroy', $court) }}"
+                                                            method="POST"
+                                                            class="d-inline"
+                                                        >
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button
+                                                                type="submit"
+                                                                class="btn btn-danger btn-sm"
+                                                            >
+                                                                Hapus
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+                                                    <a
+                                                        href="{{ route('admin.courts.show', $court) }}"
+                                                        class="btn btn-secondary btn-sm"
+                                                    >
+                                                        Detail
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
 

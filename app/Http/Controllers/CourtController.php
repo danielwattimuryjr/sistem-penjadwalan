@@ -35,7 +35,7 @@ class CourtController extends Controller
 
         Court::create($validated);
 
-        return to_route('courts.index')->with('success', 'Court created successfully.');
+        return to_route('admin.courts.index')->with('success', 'Court created successfully.');
     }
 
     /**
@@ -64,7 +64,7 @@ class CourtController extends Controller
 
         $court->update($validated);
 
-        return to_route('courts.index')->with('success', 'Court updated successfully.');
+        return to_route('admin.courts.index')->with('success', 'Court updated successfully.');
     }
 
     /**
@@ -74,6 +74,6 @@ class CourtController extends Controller
     {
         $court->delete();
 
-        return to_route('courts.index')->with('success', 'Court deleted successfully.');
+        return to_route('admin.courts.index')->with('success', 'Court deleted successfully.');
     }
 }

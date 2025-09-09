@@ -15,4 +15,9 @@ class Court extends Model
     {
         return $this->hasMany(CourtAvailability::class);
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

@@ -3,28 +3,52 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.courts.update', $court) }}" method="post">
+                    <form
+                        action="{{ route('admin.courts.update', $court) }}"
+                        method="post"
+                    >
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nama Lapangan</label>
-                            <input type="text" name="name" id="name"
-                                class="form-control @error('name') is-invalid @enderror" value="{{ $court->name }}">
+                            <label for="name" class="form-label">
+                                Nama Lapangan
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                class="form-control @error('name') is-invalid @enderror"
+                                value="{{ $court->name }}"
+                            />
                             @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="location" class="form-label">Lokasi</label>
-                            <textarea name="location" rows="5" id="location"
-                                class="form-control @error('location') is-invalid @enderror">{{$court->location}}</textarea>
+                            <label for="location" class="form-label">
+                                Lokasi
+                            </label>
+                            <textarea
+                                name="location"
+                                rows="5"
+                                id="location"
+                                class="form-control @error('location') is-invalid @enderror"
+                            >
+{{ $court->location }}</textarea
+                            >
                             @error('location')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Simpan
+                        </button>
                     </form>
                 </div>
             </div>

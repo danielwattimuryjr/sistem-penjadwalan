@@ -23,10 +23,18 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div
+                        class="d-flex justify-content-between align-items-center"
+                    >
                         <h5 class="card-title">Jadwal Ketersediaan Pemain</h5>
-                        <a href="{{ route('admin.players.availabilities.create', $player) }}"
-                            class="btn btn-primary btn-sm">Tambah Jadwal</a>
+                        @if (Auth::user()->hasRole('admin'))
+                            <a
+                                href="{{ route('admin.players.availabilities.create', $player) }}"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Tambah Jadwal
+                            </a>
+                        @endif
                     </div>
                 </div>
                 <div class="card-body">
@@ -37,33 +45,50 @@
                                     <th>Hari</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
-                                    <th>Actions</th>
+                                    @if (Auth::user()->hasRole('admin'))
+                                        <th>Actions</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($player->availabilities->count())
-                                @foreach ($player->availabilities as $availability)
-                                <tr>
-                                    <td>{{ $availability->day_of_week }}</td>
-                                    <td>{{ $availability->start_time }}</td>
-                                    <td>{{ $availability->end_time }}</td>
-                                    <td>
-                                        <form
-                                            action="{{ route('admin.players.availabilities.destroy', [$player, $availability]) }}"
-                                            method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                Hapus
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                @if ($player->availabilities->count())
+                                    @foreach ($player->availabilities as $availability)
+                                        <tr>
+                                            <td>
+                                                {{ $availability->day_of_week }}
+                                            </td>
+                                            <td>
+                                                {{ $availability->start_time }}
+                                            </td>
+                                            <td>
+                                                {{ $availability->end_time }}
+                                            </td>
+                                            @if (Auth::user()->hasRole('admin'))
+                                                <td>
+                                                    <form
+                                                        action="{{ route('admin.players.availabilities.destroy', [$player, $availability]) }}"
+                                                        method="POST"
+                                                        class="d-inline"
+                                                    >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            type="submit"
+                                                            class="btn btn-danger btn-sm"
+                                                        >
+                                                            Hapus
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
                                 @else
-                                <tr>
-                                    <td colspan="4" class="text-center">Tidak ada ketersediaan</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            Tidak ada ketersediaan
+                                        </td>
+                                    </tr>
                                 @endif
                             </tbody>
                         </table>

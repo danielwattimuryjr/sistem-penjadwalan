@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PlayerSeeder::class,
             CourtSeeder::class,
-            TimeSlotSeeder::class,
             CourtAvailabilitySeeder::class,
             PlayerAvailabilitySeeder::class,
             LaratrustSeeder::class
@@ -28,6 +27,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@app.com',
         ])->addRole('admin');
 
-
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'manager@app.com',
+        ])->addRole('manager');
     }
 }

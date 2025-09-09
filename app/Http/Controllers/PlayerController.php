@@ -35,7 +35,7 @@ class PlayerController extends Controller
 
         Player::create($validated);
 
-        return to_route('players.index')->with('success', 'Player created successfully.');
+        return to_route('admin.players.index')->with('success', 'Player created successfully.');
     }
 
     /**
@@ -64,7 +64,7 @@ class PlayerController extends Controller
 
         $player->update($validated);
 
-        return to_route('players.index')->with('success', 'Player updated successfully.');
+        return to_route('admin.players.index')->with('success', 'Player updated successfully.');
     }
 
     /**
@@ -74,6 +74,6 @@ class PlayerController extends Controller
     {
         $player->delete();
 
-        return to_route('players.index')->with('success', 'Player deleted successfully.');
+        return to_route('admin.players.index')->with('success', 'Player deleted successfully.');
     }
 }

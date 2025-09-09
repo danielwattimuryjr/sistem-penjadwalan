@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scheduled_sessions', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('time_slot_id')->constrained()->onDelete('cascade');
-            $table->foreignId('court_id')->constrained()->onDelete('cascade');
-            $table->enum('session_type', ['latihan', 'sparring', 'pertandingan']);
+            $table->date('date');
+            $table->enum('type', ['latihan', 'perlombaan', 'sparring'])->nullable();
+            $table->string('day_of_week');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->foreignId('court_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scheduled_sessions');
+        Schema::dropIfExists('schedules');
     }
 };

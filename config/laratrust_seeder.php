@@ -13,7 +13,7 @@ return [
 
     'roles_structure' => [
         'admin' => [],
-        'guest' => [],
+        'manager' => []
     ],
 
     'permissions_map' => [
