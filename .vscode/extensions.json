@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "open-southeners.laravel-pint",
+        "devsense.phptools-vscode",
+        "onecentlin.laravel-blade",
+        "esbenp.prettier-vscode"
+    ]
+}
