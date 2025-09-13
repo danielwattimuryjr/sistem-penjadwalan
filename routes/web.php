@@ -19,9 +19,8 @@ Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
         // berlaku untuk admin & manager
-        Route::resource('players', PlayerController::class)->only(['index', 'show']);
-
-        Route::resource('courts', CourtController::class)->only(['index', 'show']);
+        Route::resource('players', PlayerController::class);
+        Route::resource('courts', CourtController::class);
 
         Route::prefix('schedules')
             ->name('schedules.')
@@ -37,10 +36,8 @@ Route::prefix('admin')
         Route::get('dashboard', fn() => view('dashboard'))->name('dashboard');
 
         Route::middleware('role:admin')->group(function () {
-            Route::resource('players', PlayerController::class)->except(['index', 'show']);
             Route::resource('players.availabilities', PlayerAvailabilityController::class)
                 ->only(['store', 'create', 'destroy']);
-            Route::resource('courts', CourtController::class)->except(['index', 'show']);
             Route::resource('courts.availabilities', CourtAvailabilityController::class)
                 ->only(['store', 'create', 'destroy']);
         });

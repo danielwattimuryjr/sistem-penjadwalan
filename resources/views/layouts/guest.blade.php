@@ -222,7 +222,10 @@
                 pause: 5000,
             });
         </script>
-        {{ $scripts }}
+        @isset($scripts)
+            {{ $scripts }}
+        @endisset
+
         <script src="/satria-muda/js/app.bundle.min.js"></script>
     </body>
 </html>
