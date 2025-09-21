@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePlayerAvailabilitiesRequest;
-use App\Models\PlayerAvailability;
-use Illuminate\Http\Request;
 use App\Models\Player;
+use App\Models\PlayerAvailability;
 
 class PlayerAvailabilityController extends Controller
 {

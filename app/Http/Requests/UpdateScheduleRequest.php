@@ -25,8 +25,8 @@ class UpdateScheduleRequest extends FormRequest
         return [
             'type' => [
                 'required',
-                'in:latihan,perlombaan,sparring'
-            ]
+                'in:latihan,perlombaan,sparring',
+            ],
         ];
     }
 }

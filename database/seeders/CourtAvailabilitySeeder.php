@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Court;
 use App\Models\CourtAvailability;
+use Illuminate\Database\Seeder;
 
 class CourtAvailabilitySeeder extends Seeder
 {

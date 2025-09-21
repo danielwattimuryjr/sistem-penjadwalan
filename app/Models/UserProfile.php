@@ -9,10 +9,11 @@ class UserProfile extends Model
     protected $fillable = [
         'nomor_telepon',
         'jenis_kelamin',
-        'tanggal_lahir'
+        'tanggal_lahir',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

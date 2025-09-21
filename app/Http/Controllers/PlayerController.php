@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlayerRequest;
 use App\Http\Requests\UpdatePlayerRequest;
 use App\Models\Player;
-use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
@@ -15,6 +14,7 @@ class PlayerController extends Controller
     public function index()
     {
         $players = Player::all();
+
         return view('players.index', compact('players'));
     }
 
@@ -44,6 +44,7 @@ class PlayerController extends Controller
     public function show(Player $player)
     {
         $player->load('availabilities');
+
         return view('players.show', compact('player'));
     }
 

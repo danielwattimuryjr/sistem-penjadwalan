@@ -105,21 +105,22 @@
                                 </dd>
                             @else
                                 <dd class="col-sm-9">
-                                    {{ $schedule->type }}
+                                    {{ $schedule->type ?? '-' }}
                                 </dd>
                             @endif
                         </dl>
-
-                        <div class="row">
-                            <div class="col">
-                                <button
-                                    type="submit"
-                                    class="btn btn-sm btn-primary"
-                                >
-                                    Simpan
-                                </button>
+                        @if (Auth::user()->hasRole('manager'))
+                            <div class="row">
+                                <div class="col">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-primary"
+                                    >
+                                        Simpan
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </form>
                 </div>
             </div>

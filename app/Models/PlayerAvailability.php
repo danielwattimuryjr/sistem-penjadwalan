@@ -12,7 +12,7 @@ class PlayerAvailability extends Model
         'start_time',
         'end_time',
     ];
-    
+
     public function player()
     {
         return $this->belongsTo(Player::class);

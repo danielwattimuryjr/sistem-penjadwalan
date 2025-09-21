@@ -10,6 +10,6 @@ class SchedulePlayer extends Pivot
 
     protected $fillabel = [
         'schedule_id',
-        'player_id'
+        'player_id',
     ];
 }

@@ -9,7 +9,7 @@ class Player extends Model
     protected $fillable = [
         'name',
         'position',
-        'jersey_number'
+        'jersey_number',
     ];
 
     public function availabilities()
@@ -20,6 +20,6 @@ class Player extends Model
     public function schedules()
     {
         return $this->belongsToMany(Schedule::class, 'schedule_player')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 }

@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Schedule;
-use App\Models\SchedulePlayer;
-use Illuminate\Support\Facades\Http;
-use App\Models\Player;
-use App\Models\Court;
-use App\Models\TimeSlot;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Http\Requests\UpdateScheduleRequest;
+use App\Models\Court;
+use App\Models\Player;
+use App\Models\Schedule;
 use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ScheduleController extends Controller
 {
@@ -20,12 +17,13 @@ class ScheduleController extends Controller
 
     public function __construct()
     {
-        $this->schedulerUrl = env('PYTHON_API_URL', 'http://localhost:5000') . '/solve';
+        $this->schedulerUrl = env('PYTHON_API_URL', 'http://localhost:5000').'/solve';
     }
 
     public function index()
     {
         $schedules = Schedule::orderBy('date')->get();
+
         return view('penjadwalan.index', compact('schedules'));
     }
 
@@ -37,6 +35,7 @@ class ScheduleController extends Controller
     public function edit(Schedule $schedule)
     {
         $schedule->load(['court', 'players']);
+
         return view('penjadwalan.edit', compact('schedule'));
     }
 
@@ -78,11 +77,11 @@ class ScheduleController extends Controller
             return to_route('admin.schedules.index')->with('success', "Berhasil membuat {$savedSchedules->count()} jadwal");
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error('Error generating schedule: ' . $e->getMessage(), [
-                'trace' => $e->getTraceAsString()
+            Log::error('Error generating schedule: '.$e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
             ]);
 
-            return to_route('admin.schedules.index')->with('error', 'Terjadi error saat membuat jadwal: ' . $e->getMessage());
+            return to_route('admin.schedules.index')->with('error', 'Terjadi error saat membuat jadwal: '.$e->getMessage());
         }
     }
 
@@ -96,9 +95,9 @@ class ScheduleController extends Controller
                     return [
                         'day_of_week' => $avail->day_of_week,
                         'start_time' => $avail->start_time,
-                        'end_time' => $avail->end_time
+                        'end_time' => $avail->end_time,
                     ];
-                })->toArray()
+                })->toArray(),
             ];
         })->filter(function ($player) {
             return count($player['availabilities']) > 0; // Only players with availability
@@ -113,9 +112,9 @@ class ScheduleController extends Controller
                     return [
                         'day_of_week' => $avail->day_of_week,
                         'start_time' => $avail->start_time,
-                        'end_time' => $avail->end_time
+                        'end_time' => $avail->end_time,
                     ];
-                })->toArray()
+                })->toArray(),
             ];
         })->filter(function ($court) {
             return count($court['availabilities']) > 0; // Only courts with availability
@@ -123,7 +122,7 @@ class ScheduleController extends Controller
 
         return [
             'players' => $playersData,
-            'courts' => $courtsData
+            'courts' => $courtsData,
         ];
     }
 
@@ -134,8 +133,8 @@ class ScheduleController extends Controller
 
             $response = Http::timeout(30)->post($this->schedulerUrl, $data);
 
-            if (!$response->successful()) {
-                throw new Exception("Scheduler service error: " . $response->body());
+            if (! $response->successful()) {
+                throw new Exception('Scheduler service error: '.$response->body());
             }
 
             $result = $response->json();
@@ -144,8 +143,8 @@ class ScheduleController extends Controller
 
             return $result['schedule'] ?? $result ?? [];
         } catch (Exception $e) {
-            Log::error('Python scheduler call failed: ' . $e->getMessage());
-            throw new Exception('Gagal menghubungi layanan scheduler: ' . $e->getMessage());
+            Log::error('Python scheduler call failed: '.$e->getMessage());
+            throw new Exception('Gagal menghubungi layanan scheduler: '.$e->getMessage());
         }
     }
 
@@ -157,10 +156,10 @@ class ScheduleController extends Controller
             // Update if exists, otherwise insert
             $schedule = Schedule::updateOrCreate(
                 [
-                    'date'       => $scheduleData['date'],
+                    'date' => $scheduleData['date'],
                     'start_time' => $scheduleData['start_time'],
-                    'end_time'   => $scheduleData['end_time'],
-                    'court_id'   => $scheduleData['court'],
+                    'end_time' => $scheduleData['end_time'],
+                    'court_id' => $scheduleData['court'],
                 ],
                 [
                     'day_of_week' => $scheduleData['day'],

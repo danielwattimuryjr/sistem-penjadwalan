@@ -8,7 +8,7 @@ class Court extends Model
 {
     protected $fillable = [
         'name',
-        'location'
+        'location',
     ];
 
     public function availabilities()

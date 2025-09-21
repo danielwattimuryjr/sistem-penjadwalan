@@ -12,7 +12,7 @@ class Schedule extends Model
         'day_of_week',
         'start_time',
         'end_time',
-        'court_id'
+        'court_id',
     ];
 
     public function court()
@@ -23,6 +23,6 @@ class Schedule extends Model
     public function players()
     {
         return $this->belongsToMany(Player::class, 'schedule_player')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 }

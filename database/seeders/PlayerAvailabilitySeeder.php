@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Player;
 use App\Models\PlayerAvailability;
+use Illuminate\Database\Seeder;
 
 class PlayerAvailabilitySeeder extends Seeder
 {
@@ -76,7 +75,7 @@ class PlayerAvailabilitySeeder extends Seeder
 
         // Create availabilities based on strategic distribution
         foreach ($playerDistribution as $slotKey => $playerIds) {
-            list($day, $startTime) = explode('_', $slotKey);
+            [$day, $startTime] = explode('_', $slotKey);
 
             // Find the corresponding end time
             $endTime = null;
@@ -118,7 +117,7 @@ class PlayerAvailabilitySeeder extends Seeder
                         ->where('start_time', $slot['start'])
                         ->exists();
 
-                    if (!$exists) {
+                    if (! $exists) {
                         PlayerAvailability::create([
                             'player_id' => $player->id,
                             'day_of_week' => $slot['day'],

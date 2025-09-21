@@ -7,8 +7,7 @@ use Illuminate\View\View;
 
 class AdminAuthLayout extends Component
 {
-    public function __construct()
-    {}
+    public function __construct() {}
 
     /**
      * Get the view / contents that represents the component.

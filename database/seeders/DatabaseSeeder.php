@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CourtSeeder::class,
             CourtAvailabilitySeeder::class,
             PlayerAvailabilitySeeder::class,
-            LaratrustSeeder::class
+            LaratrustSeeder::class,
         ]);
 
         User::factory()->create([

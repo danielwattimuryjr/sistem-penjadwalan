@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourtAvailabilitiesRequest;
-use App\Models\CourtAvailability;
-use Illuminate\Http\Request;
 use App\Models\Court;
+use App\Models\CourtAvailability;
 
 class CourtAvailabilityController extends Controller
 {

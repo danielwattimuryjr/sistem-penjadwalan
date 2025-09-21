@@ -12,7 +12,7 @@ class UpdateCourtRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return return Auth::user()->hasRole('admin');
+        return Auth::user()->hasRole('admin');
     }
 
     /**

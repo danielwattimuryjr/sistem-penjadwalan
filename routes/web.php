@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\CourtAvailabilityController;
 use App\Http\Controllers\CourtController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PlayerAvailabilityController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ScheduleController;
+use Illuminate\Support\Facades\Route;
 
 Route::controller(GuestController::class)->group(function () {
     Route::get('/', 'openWelcomePage')->name('guest.welcome');
@@ -33,7 +33,7 @@ Route::prefix('admin')
                 Route::delete('{schedule}', 'destroy')->name('destroy');
             });
 
-        Route::get('dashboard', fn() => view('dashboard'))->name('dashboard');
+        Route::get('dashboard', fn () => view('dashboard'))->name('dashboard');
 
         Route::middleware('role:admin')->group(function () {
             Route::resource('players.availabilities', PlayerAvailabilityController::class)
@@ -43,5 +43,4 @@ Route::prefix('admin')
         });
     });
 
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

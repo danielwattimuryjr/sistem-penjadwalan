@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'nomor_telepon' => ['required', 'digits_between:12,13'],
             'jenis_kelamin' => ['required', 'in:male,female'],
-            'tanggal_lahir' => ['required']
+            'tanggal_lahir' => ['required'],
         ]);
 
         $user = User::create([
@@ -46,14 +46,13 @@ class RegisteredUserController extends Controller
         $user->profile()->create([
             'nomor_telepon' => $request->nomor_telepon,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'tanggal_lahir' => $request->tanggal_lahir
+            'tanggal_lahir' => $request->tanggal_lahir,
         ]);
-        $user->addRole('guest');
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('guest.welcome', absolute: false));
+        return redirect(route('guest.welcome', absolute: true));
     }
 }

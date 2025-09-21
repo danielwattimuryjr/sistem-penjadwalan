@@ -1,7 +1,7 @@
 {
     "editor.formatOnSave": true,
+    "laravel-pint.enable": true,
     "[php]": {
-        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-    },
-    "php.version": "php83"
+        "editor.defaultFormatter": "open-southeners.laravel-pint"
+    }
 }

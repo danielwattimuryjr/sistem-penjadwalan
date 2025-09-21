@@ -12,7 +12,7 @@ class CourtAvailability extends Model
         'start_time',
         'end_time',
     ];
-    
+
     public function player()
     {
         return $this->belongsTo(Court::class);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Player;
 use App\Models\Schedule;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
@@ -27,7 +27,7 @@ class GuestController extends Controller
         $players = Player::orderBy('name')->get([
             'name',
             'position',
-            'jersey_number'
+            'jersey_number',
         ]);
 
         return view('roster', compact('players'));
@@ -37,13 +37,12 @@ class GuestController extends Controller
     {
         $schedules = Schedule::when(
             $request->jenis_sesi,
-            fn($query, $value) =>
-            $query->where('type', $value)
+            fn ($query, $value) => $query->where('type', $value)
         )
             ->when(
                 $request->year,
-                fn($query, $value) => $query->whereRaw("YEAR(date) = ?", [$value]),
-                fn($query) => $query->where('date', '>', Carbon::now())
+                fn ($query, $value) => $query->whereRaw('YEAR(date) = ?', [$value]),
+                fn ($query) => $query->where('date', '>', Carbon::now())
             )
             ->orderByRaw('type IS NULL, type ASC')
             ->orderBy('date', 'asc')
