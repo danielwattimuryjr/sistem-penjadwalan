@@ -61,6 +61,10 @@
             type="text/css"
             href="/satria-muda/css/jquery.bxslider.css"
         />
+        @isset($styles)
+            {{ $styles }}
+        @endisset
+
         <script type="text/javascript" src="/satria-muda/js/jquery.js"></script>
         <script
             type="text/javascript"

@@ -51,4 +51,13 @@
             <div class="clearfix" style="margin: 50px 0px"></div>
         </div>
     </div>
+
+    <x-slot name="styles">
+        <style>
+            .style-apri{
+                background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/satria-muda/images/static/1756897676-web Header SM.jpg') no-repeat center;
+                background-size: cover;
+            }
+        </style>
+    </x-slot>
 </x-guest-layout>
